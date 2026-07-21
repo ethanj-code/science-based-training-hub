@@ -259,20 +259,16 @@
 
     <!-- 2. PASTE YOUR GOOGLE SITE KEY IN PLACE OF THE 'aaa...' BELOW -->
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Pause the screen navigation
-            
-            grecaptcha.ready(function() {
-                grecaptcha.execute('6LeR9l0tAAAAAJrF7MEBrcwYJkE25fNau17aLDtb', {action: 'submit'}).then(function(token) {
-                    // Lock the verification token into the input form field
-                    document.getElementById('_recaptcha').value = token;
-                    
-                    // Fire the real page submission sequence
-                    document.getElementById('contactForm').submit();
-                });
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault(); 
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6LeR9l0tAAAAAJrF7MEBrcwYJkE25fNau17aLDtb', {action: 'submit'}).then(function(token) {
+                document.getElementById('_recaptcha').value = token;
+                document.getElementById('contactForm').submit();
             });
         });
-    </script>
+    });
+</script>
 
 </body>
 </html>
