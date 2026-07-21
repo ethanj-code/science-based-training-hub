@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Science-Based Training Hub</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 { color: #00abd5; }
+        h3 { color: #00abd5; }
+        article {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        input {
+            background-color: #2a2a2a;
+            color: white;
+            border: 1px solid #444;
+            padding: 8px;
+            border-radius: 4px;
+            margin-top: 5px;
+            width: 200px;
+        }
+        button {
+            background-color: #00abd5;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #005a70;
+        }
+
+        .calculator1, .calculator2 {
+            border-radius: 0 !important;
+            border-bottom: none !important;
+        }
+
+        .converter {
+            border-radius: 0 0 8px 8px !important;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            display: inline-block;
+            background-color: #00abd5;
+            color: #ffffff;
+            padding: 10px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.25s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: #005a70;
+        }
+
+        .header-logo {
+            margin-top: 15px;
+            display: block;
+        }
+
+        header {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        main {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .features-grid {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            flex: 1;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #2a2a2a;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #aaaaaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: #00abd5;
+        }
+
+        .copyright {
+            color: #666666;
+            font-size: 0.8rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="nav-btn">Home</a>
+        <a href="articles.html" class="nav-btn">Articles</a>
+        <a href="calculators.html" class="nav-btn">Calculators</a>
+        <a href="contact.html" class="nav-btn">Contact Us</a>
+    </nav>
+
+    <header>
+        <img src="logo_with_name_and_slogan.jpg" class="header-logo" width="300" alt="Science-Based Training Hub Logo">
+    </header>
+
+    <main class="welcome-section">
+        <h1>Welcome to the Training Hub</h1>
+        <p>
+            Ditch the guesswork and bro-science. This platform is built for athletes and fitness enthusiasts who want precision in their programming. 
+            Explore our evidence-based articles and use our specialised calculators to optimise your training, recovery, and nutrition.
+        </p><br>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Evidence-Based Articles</h3>
+                <p>Read the latest research on recovery, diet, and hypertrophy</p>
+                <a href="articles.html">
+                    <button type="button">Learn Something New</button>
+                </a>            
+            </div>
+
+            <div class="feature-card">
+                <h3>Precision Calculators</h3>
+                <p>Calculate 1RM, BMR and convert between kilograms and pounds with our three modern calculators</p>
+                <a href="calculators.html">
+                    <button type="button">Get started with Calculators</button>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="articles.html">Articles</a>
+            <a href="calculators.html">Calculators</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+        <p class="copyright">&copy; 2026 Science-Based Training Hub. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
