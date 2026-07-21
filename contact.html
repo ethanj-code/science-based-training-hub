@@ -256,35 +256,20 @@
     <!-- 3. PROCESSING INTERCEPT SCRIPT -->
     <script>
         document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Stop the form from causing any screen reloads
+            e.preventDefault(); // Pause the submission sequence
             
             grecaptcha.ready(function() {
-                // 1. Get your secure bot token from Google
-                grecaptcha.execute('6LeR9l0tAAAAAJrF7MEBrcwYJkE25fNau17aLDtb', {action: 'submit'}).then(function(token) {
+                // 1. Fetch your bot authentication token from Google
+                grecaptcha.execute('YOUR_RECAPTCHA_SITE_KEY_HERE', {action: 'submit'}).then(function(token) {
+                    // 2. Put the token safely inside your hidden form field
                     document.getElementById('_recaptcha').value = token;
                     
-                    // 2. Gather all the form data safely into a background package
-                    const formData = new FormData(document.getElementById('contactForm'));
-                    
-                    // 3. Send the package quietly to FormSubmit in the background
-                    fetch(document.getElementById('contactForm').action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    })
-                    .then(response => {
-                        // 4. Once FormSubmit says "Got it!", instantly force open your homepage
-                        window.location.href = "https://ethanj-code.github.io/science-based-training-hub/";
-                    })
-                    .catch(error => {
-                        // If anything goes wrong locally, it still pushes them home safely
-                        window.location.href = "https://ethanj-code.github.io/science-based-training-hub/";
-                    });
+                    // 3. Fire the native HTML submit mechanism to trigger emails and autoresponses
+                    document.getElementById('contactForm').submit();
                 });
             });
         });
     </script>
+
 </body>
 </html>
