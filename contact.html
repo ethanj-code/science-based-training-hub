@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Articles - Science-Based Lifting Hub</title>
     
-    <!-- 1. PASTE YOUR GOOGLE SITE KEY IN PLACE OF THE 'aaa...' BELOW -->
-    <script src="https://google.com/6LeR9l0tAAAAAJrF7MEBrcwYJkE25fNau17aLDtb"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LeR9l0tAAAAAJrF7MEBrcwYJkE25fNau17aLDtb"></script>
     
     <style>
         body {
@@ -216,14 +215,11 @@
         <h3 style="color: #00abd5; margin-top: 0;">Contact the Training Hub</h3>
         <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 25px;">Have an article request or want to ask a question? Drop a message below.</p>
 
-        <!-- Standard form endpoint path -->
         <form id="contactForm" action="https://formsubmit.co/ea4426a284e465b9291b71742818d284" method="POST">
 
-            <!-- Hidden field needed to hand the Google token down to FormSubmit -->
             <input type="hidden" name="_recaptcha" id="_recaptcha">
-
-            <!-- Sends confirmation email copy back to user instantly -->
-            <input type="hidden" name="_autoresponse" value="Thank you for reaching out to the Science-Based Training Hub! We have received your message safely and will get back to you within 24-48 hours.">
+            <input type="hidden" name="_next" value="https://github.io/science-based-training-hub/index.html/">
+            <input type="hidden" name="_autoresponse" value="Thank you for reaching out to the Science-Based Training Hub! We have received your message safely and will try to get back to you in 5 working days.">
 
             <div class="form-group">
                 <label for="userName">Your Name</label>
@@ -257,18 +253,19 @@
         <p class="copyright">&copy; 2026 Science-Based Training Hub. All rights reserved.</p>
     </footer>
 
-    <!-- 2. PASTE YOUR GOOGLE SITE KEY IN PLACE OF THE 'aaa...' BELOW -->
+    <!-- 3. PROCESSING INTERCEPT SCRIPT -->
     <script>
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-        e.preventDefault(); 
-        grecaptcha.ready(function() {
-            grecaptcha.execute('6LeR9l0tAAAAAJrF7MEBrcwYJkE25fNau17aLDtb', {action: 'submit'}).then(function(token) {
-                document.getElementById('_recaptcha').value = token;
-                document.getElementById('contactForm').submit();
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            grecaptcha.ready(function() {
+                // Remember to swap this out with your key!
+                grecaptcha.execute('6LeR9l0tAAAAAJrF7MEBrcwYJkE25fNau17aLDtb', {action: 'submit'}).then(function(token) {
+                    document.getElementById('_recaptcha').value = token;
+                    document.getElementById('contactForm').submit();
+                });
             });
         });
-    });
-</script>
+    </script>
 
 </body>
 </html>
