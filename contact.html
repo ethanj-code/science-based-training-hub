@@ -255,13 +255,33 @@
 
     <!-- 3. PROCESSING INTERCEPT SCRIPT -->
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault(); 
-            grecaptcha.ready(function() {
-                // Remember to swap this out with your key!
-                grecaptcha.execute('6LeR9l0tAAAAAJrF7MEBrcwYJkE25fNau17aLDtb', {action: 'submit'}).then(function(token) {
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Stop the form from causing any screen reloads
+            
+        grecaptcha.ready(function() {
+            // 1. Get your secure bot token from Google
+            grecaptcha.execute('6LeR9l0tAAAAAJrF7MEBrcwYJkE25fNau17aLDtb', {action: 'submit'}).then(function(token) {
                     document.getElementById('_recaptcha').value = token;
-                    document.getElementById('contactForm').submit();
+                    
+                    // 2. Gather all the form data safely into a background package
+                    const formData = new FormData(document.getElementById('contactForm'));
+                    
+                    // 3. Send the package quietly to FormSubmit in the background
+                    fetch(document.getElementById('contactForm').action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        // 4. Once FormSubmit says "Got it!", instantly force open your homepage
+                        window.location.href = "https://github.io";
+                    })
+                    .catch(error => {
+                        // If anything goes wrong locally, it still pushes them home safely
+                        window.location.href = "https://github.io";
+                    });
                 });
             });
         });
