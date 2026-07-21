@@ -215,7 +215,7 @@
         <h3 style="color: #00abd5; margin-top: 0;">Contact the Training Hub</h3>
         <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 25px;">Have an article request or want to ask a question? Drop a message below.</p>
 
-        <form id="contactForm" action="https://formsubmit.co/ea4426a284e465b9291b71742818d284" method="POST">
+        <form id="contactForm" action="https://formsubmit.co/ea4426a284e465b9291b71742818d284/ajax/" method="POST">
 
             <input type="hidden" name="_recaptcha" id="_recaptcha">
             <input type="hidden" name="_next" value="https://github.io/science-based-training-hub/">
@@ -255,18 +255,18 @@
 
     <!-- 3. PROCESSING INTERCEPT SCRIPT -->
     <script>
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-        e.preventDefault(); // Stop the form from causing any screen reloads
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Stop the form from causing a webpage reload
             
-        grecaptcha.ready(function() {
-            // 1. Get your secure bot token from Google
-            grecaptcha.execute('6LeR9l0tAAAAAJrF7MEBrcwYJkE25fNau17aLDtb', {action: 'submit'}).then(function(token) {
+            grecaptcha.ready(function() {
+                // Replace with your real Google Site Key
+                grecaptcha.execute('6LeR9l0tAAAAAJrF7MEBrcwYJkE25fNau17aLDtb', {action: 'submit'}).then(function(token) {
                     document.getElementById('_recaptcha').value = token;
                     
-                    // 2. Gather all the form data safely into a background package
+                    // Bundle your form fields
                     const formData = new FormData(document.getElementById('contactForm'));
                     
-                    // 3. Send the package quietly to FormSubmit in the background
+                    // Submit silently to FormSubmit
                     fetch(document.getElementById('contactForm').action, {
                         method: 'POST',
                         body: formData,
@@ -275,17 +275,16 @@
                         }
                     })
                     .then(response => {
-                        // 4. Once FormSubmit says "Got it!", instantly force open your homepage
-                        window.location.href = "https://ethanj-code.github.io/science-based-training-hub/";
+                        // Redirect safely to your homepage immediately
+                        window.location.href = 'ethanj-code.github.io/science-based-training-hub/';
                     })
                     .catch(error => {
-                        // If anything goes wrong locally, it still pushes them home safely
-                        window.location.href = "https://ethanj-code.github.io/science-based-training-hub/";
+                        // Fallback to homepage if the connection drops
+                        window.location.href = 'ethanj-code.github.io/science-based-training-hub/';
                     });
                 });
             });
         });
     </script>
-
 </body>
 </html>
