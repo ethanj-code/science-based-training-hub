@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercise Library - Science-Based Training Hub</title>
+        <style>
+            body {
+                background-color: #121212;
+                color: #ffffff;
+                font-family: Arial, sans-serif;
+                padding: 40px;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+            h1 { color: #00abd5; }
+            nav {
+                display: flex;
+                gap: 15px;
+                margin-bottom: 20px;
+            }
+            .nav-btn {
+                display: inline-block;
+                background-color: #00abd5;
+                color: #ffffff;
+                padding: 10px 15px;
+                border-radius: 4px;
+                text-decoration: none;
+                font-weight: bold;
+                transition: background-color 0.2s ease;
+            }
+            .nav-btn:hover {
+                background-color: #005a70;
+            }
+
+            header {
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav {
+                display: flex;
+                flex-direction: row; /* Forces links onto a single row */
+                justify-content: center; /* Centers the whole navigation row on the screen */
+                gap: 15px; /* Puts a clean 15px gap between each button */
+                margin-bottom: 20px;
+                width: 100%;
+            }  
+
+            /* Category Filter Tabs Grid */
+            .category-tabs {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                margin: 30px 0;
+                flex-wrap: wrap;
+            }
+            .tab-btn {
+                background-color: #1e1e1e;
+                color: #aaaaaa;
+                border: 1px solid #2a2a2a;
+                padding: 8px 16px;
+                border-radius: 20px;
+                cursor: pointer;
+                font-weight: bold;
+                transition: all 0.2s ease;
+            }
+            .tab-btn:hover {
+                border-color: #00abd5;
+                color: #ffffff;
+            }
+            .tab-btn.active {
+                background-color: #00abd5;
+                color: #ffffff;
+                border-color: #00abd5;
+            }
+
+            /* Exercise Grid Layout */
+            .exercise-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 20px;
+                margin-top: 20px;
+            }
+            @media (min-width: 600px) {
+                .exercise-grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+            }
+
+            /* Exercise Cards */
+            .exercise-card {
+                background-color: #1e1e1e;
+                border: 1px solid #2a2a2a;
+                border-radius: 8px;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                transition: border-color 0.2s ease;
+            }
+            .exercise-card:hover {
+                border-color: #00abd5;
+            }
+            .exercise-card h3 {
+                margin: 0 0 5px 0;
+                color: #00abd5;
+                font-size: 1.2rem;
+            }
+            .target-muscle {
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: #aaaaaa;
+                font-weight: bold;
+                margin-bottom: 15px;
+            }
+            .science-note {
+                background-color: #15272c;
+                border-left: 3px solid #00abd5;
+                padding: 10px;
+                border-radius: 4px;
+                font-size: 0.85rem;
+                color: #dddddd;
+                margin-bottom: 15px;
+                line-height: 1.4;
+            }
+            .exercise-details {
+                font-size: 0.9rem;
+                color: #bbbbbb;
+                margin: 0 0 15px 0;
+                line-height: 1.5;
+            }
+
+            footer {
+                text-align: center;
+                margin-top: 60px;
+                padding-top: 20px;
+                border-top: 1px solid #2a2a2a;
+            }
+            .footer-links {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                margin-bottom: 15px;
+            }
+            .footer-links a {
+                color: #aaaaaa;
+                text-decoration: none;
+                font-size: 0.9rem;
+                transition: color 0.2s ease;
+            }
+            .footer-links a:hover {
+                color: #00abd5;
+            }
+            .copyright {
+                color: #666666;
+                font-size: 0.8rem;
+            }
+        </style>
+    </head>
+    <body>
+
+        <header>
+            <nav>
+                <a href="index.html" class="nav-btn">Home</a>
+                <a href="articles.html" class="nav-btn">Articles</a>
+                <a href="calculators.html" class="nav-btn">Calculators</a>
+                <a href="exercise-library.html" class="nav-btn">Exercise Library</a>
+                <a href="contact.html" class="nav-btn">Contact Us</a>
+            </nav>
+        </header>
+
+        <header>
+            <h1>Exercise Library</h1>
+            <p>A movement database optimised for mechanical tension and joint alignment.</p>
+        </header>
+
+        <article>
+            <input type="text" id="exerciseSearch" placeholder="Search exercises..." onkeyup="searchExercises()"
+                style="background-color: #2a2a2a; color: white; border: 1px solid #444; padding: 12px; border-radius: 6px; font-size: 1rem; width: 100%; box-sizing: border-box; margin-top: 5px;">
+        </article>
+
+        <div class="category-tabs">
+            <button class="tab-btn active" onclick="filterCategory('all')">All Movements</button>
+            <button class="tab-btn" onclick="filterCategory('abds')">Abductors</button>
+            <button class="tab-btn" onclick="filterCategory('core')">Abdominals and Obliques</button>
+            <button class="tab-btn" onclick="filterCategory('adds')">Adductors</button>
+            <button class="tab-btn" onclick="filterCategory('biceps')">Biceps</button>
+            <button class="tab-btn" onclick="filterCategory('calves')">Calves</button>
+            <button class="tab-btn" onclick="filterCategory('chest')">Chest</button>
+            <button class="tab-btn" onclick="filterCategory('forearms')">Forearms</button>
+            <button class="tab-btn" onclick="filterCategory('glutes')">Gluteals</button>
+            <button class="tab-btn" onclick="filterCategory('hammies')">Hamstrings</button>
+            <button class="tab-btn" onclick="filterCategory('lats')">Latissimus Dorsi</button>
+            <button class="tab-btn" onclick="filterCategory('lback')">Lower Back</button>
+            <button class="tab-btn" onclick="filterCategory('quads')">Quadriceps</button>
+            <button class="tab-btn" onclick="filterCategory('shoulders')">Shoulders</button>
+            <button class="tab-btn" onclick="filterCategory('traps')">Trapezius</button>
+            <button class="tab-btn" onclick="filterCategory('triceps')">Triceps</button>
+            <button class="tab-btn" onclick="filterCategory('uback')">Upper Back</button>
+        </div>
+
+        <!-- Biceps Exercise Card -->
+        <div class="exercise-card" data-category="biceps forearms">
+            <div class="card-content">
+                <h3>Incline Dumbbell Curl</h3>
+                <div class="target-muscle">Target: Biceps Brachii (Long Head Focus)</div>
+                
+                <p class="exercise-details">
+                    Set a bench to a 45-degree incline. Let your arms hang straight down behind your torso. 
+                    Keep your elbows locked in place as you curl the dumbbells upward, supinating your wrists at the top.
+                </p>
+                
+                <!-- Highlighted Science Block -->
+                <div class="science-note">
+                    <strong>Biomechanics Note:</strong> Positioning the shoulder into hyperextension places the long head 
+                    of the biceps into a passive stretch. Research shows training muscles at long muscle lengths 
+                    significantly boosts hypertrophy.
+                </div>
+            </div>
+            
+            <a href="biceps-incline-curl.html" class="nav-btn" style="text-align: center; margin-top: 15px;">View Full Guide</a>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="articles.html">Articles</a>
+                <a href="calculators.html">Calculators</a>
+                <a href="exercise-library.html">Exercise Library</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+            <p class="copyright">&copy; 2026 Science-Based Training Hub. All rights reserved.</p>
+        </footer>
+
+        <script>
+            function filterCategory(category) {
+                // 1. Update the styling of the clicked button
+                const buttons = document.querySelectorAll('.tab-btn');
+                buttons.forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Find the button that was just clicked and make it look active
+                event.target.classList.add('active');
+
+                // 2. Filter the exercise cards
+                const cards = document.querySelectorAll('.exercise-card');
+                cards.forEach(card => {
+                    // Get the specific muscle group tagged on this card
+                    const cardMuscle = card.getAttribute('data-category');
+
+                    // If "All" is clicked, or if the card matches the chosen muscle, show it
+                    if (category === 'all' || cardMuscle.includes(category)) {
+                        card.style.display = 'flex'; // Shows the card using your grid styling
+                    } else {
+                        card.style.display = 'none'; // Completely hides non-matching cards
+                    }
+                });
+            }
+
+            function searchExercises() {
+                const input = document.getElementById('exerciseSearch').value.toLowerCase();
+                const cards = document.querySelectorAll('.exercise-card');
+                
+                // 2. Reset all filter buttons back to neutral since we are searching everything
+                const buttons = document.querySelectorAll('.tab-btn');
+                buttons.forEach(btn => btn.classList.remove('active'));
+                // Optional: Highlight the 'All Movements' button as active
+                const allBtn = Array.from(buttons).find(b => b.getAttribute('onclick').includes('all'));
+                if (allBtn) allBtn.classList.add('active');
+
+                // 3. Loop through the cards and check the headings
+                cards.forEach(card => {
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    
+                    // If the title contains the typed search term, show it
+                    if (title.includes(input)) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+        </script>
+
+    </body>
